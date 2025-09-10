@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSS Font Control</title>
+  <style>
+    #textBox {
+      border: 3px solid black;
+      padding: 10px;
+      margin-top: 20px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Change the Paragraph Style</h2>
+  <label>Red: <input type="number" id="r" min="1" max="1"></label><br>
+  <label>Green: <input type="number" id="g" min="1" max="1"></label><br>
+  <label>Blue: <input type="number" id="b" min="1" max="1"></label><br>
+  <label>Border Width: <input type="number" id="border" min="1" max="20"></label><br><br>
+  <button onclick="applyStyle()">Apply</button>
+
+  <p id="textBox">Change my color or thickness by typing 255 in the box!</p>
+
+  <script>
+    function applyStyle() {
+      let r = document.getElementById("r").value || 0;
+      let g = document.getElementById("g").value || 0;
+      let b = document.getElementById("b").value || 0;
+      let border = document.getElementById("border").value || 3;
+
+      let paragraph = document.getElementById("textBox");
+      let rgbColor = `rgb(${r}, ${g}, ${b})`;
+
+      // Update text color
+      paragraph.style.color = rgbColor;
+
+      // Update border color + width
+      paragraph.style.borderColor = rgbColor;
+      paragraph.style.borderWidth = border + "px";
+    }
+  </script>
+</body>
+</html>
