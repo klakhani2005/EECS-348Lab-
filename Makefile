@@ -1,19 +1,16 @@
-# Makefile for EECS 348 - Lab 9 (C++)
-CXX := g++
-CXXFLAGS := -std=c++17 -Wall -Wextra -Werror -O2
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall
 
-TARGET := lab9
-SRC := main.cpp
+all: string_calculator
 
-.PHONY: all clean run
+string_calculator: main.o string_calculator.o
+	$(CXX) $(CXXFLAGS) -o string_calculator main.o string_calculator.o
 
-all: $(TARGET)
+main.o: main.cpp string_calculator.h
+	$(CXX) $(CXXFLAGS) -c main.cpp
 
-$(TARGET): $(SRC)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC)
-
-run: all
-	./$(TARGET) input.txt
+string_calculator.o: string_calculator.cpp string_calculator.h
+	$(CXX) $(CXXFLAGS) -c string_calculator.cpp
 
 clean:
-	rm -f $(TARGET)
+	rm -f *.o string_calculator
